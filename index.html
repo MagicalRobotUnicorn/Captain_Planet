@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Captain Planet: The Game</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <!-- Bootstrap File -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+
+
+
+  <!-- JQuery -->
+  <div id="video">
+      <video autoplay muted loop id="discovideo" style="display: none;">
+        <source src="assets/discoball.mp4" type="video/mp4">
+      </video>
+  </div>
+
+  <script src="https://code.jquery.com/jquery.js"></script>
+
+</head>
+<style>
+    #discovideo {
+      position: fixed;
+      right: 0;
+      bottom: 0;
+      min-width: 100%;
+      min-height: 100%;
+    }
+  
+    @-webkit-keyframes hvr-buzz {
+      50% {
+        -webkit-transform: translateX(3px) rotate(2deg);
+        transform: translateX(3px) rotate(2deg);
+      }
+  
+      100% {
+        -webkit-transform: translateX(-3px) rotate(-2deg);
+        transform: translateX(-3px) rotate(-2deg);
+      }
+    }
+  
+    @keyframes hvr-buzz {
+      50% {
+        -webkit-transform: translateX(3px) rotate(2deg);
+        transform: translateX(3px) rotate(2deg);
+      }
+  
+      100% {
+        -webkit-transform: translateX(-3px) rotate(-2deg);
+        transform: translateX(-3px) rotate(-2deg);
+      }
+    }
+  
+    .hvr-buzz {
+      display: inline-block;
+      vertical-align: middle;
+      -webkit-transform: perspective(1px) translateZ(0);
+      transform: perspective(1px) translateZ(0);
+      box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+    }
+  
+    .hvr-buzz {
+      -webkit-animation-name: hvr-buzz;
+      animation-name: hvr-buzz;
+      -webkit-animation-duration: 0.15s;
+      animation-duration: 0.15s;
+      -webkit-animation-timing-function: linear;
+      animation-timing-function: linear;
+      -webkit-animation-iteration-count: infinite;
+      animation-iteration-count: infinite;
+    }
+  
+  
+  </style>
+<body>
+
+  <!-- Overall Bootstrap Grid -->
+  <div class="container">
+
+    <!-- Jumbotron with Title -->
+    <div class="jumbotron">
+      <h1 class="text-center">
+        <strong>Captain Planet</strong>
+      </h1>
+      <hr>
+      <div id="musicControls" class="text-center">
+        <button class="btn btn-warning btn-xs theme-button">
+          <span class="fa fa-music"></span> Play Theme!</button>
+        <button class="btn btn-dark btn-xs pause-button">
+          <span class="fa fa-pause"></span> Pause Song</button>
+      </div>
+
+    </div>
+    <div class="row">
+
+      <div class="col-lg-6">
+
+        <!-- Controls (Superpower Grow/Shrink)-->
+        <div id="sizeControls" class="card">
+          <h4 class="card-header">Superpowers - Change Sizes!</h4>
+          <div class="card-body">
+            <div class="text-center">
+              <button class="btn btn-dark btn-lg normal-button">
+                <span class="fa fa-ok"></span> Normal</button>
+              <button class="btn btn-primary btn-lg grow-button">
+                <span class="fa fa-plus"></span> Grow</button>
+              <button class="btn btn-danger btn-lg shrink-button">
+                <span class="fa fa-minus"></span> Shrink</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Controls (Superpower Visibility) -->
+        <div id="visibilityControls" class="card">
+          <h4 class="card-header">Superpowers - Invisiblity!</h4>
+          <div class="card-body">
+            <div class="text-center">
+              <button class="btn btn-dark btn-lg vis-button">
+                <span class="fa fa-eye"></span> Visible</button>
+              <button class="btn btn-info btn-lg invis-button">
+                <span class="fa fa-eye-slash"></span> Invisible</button>
+            </div>
+          </div>
+        </div>
+<!-- Color changing superpower -->
+        <div id="visibilityControls" class="card">
+          <h4 class="card-header">Superpowers - Color changing!</h4>
+          <div class="card-body">
+            <div class="text-center">
+              <button class="btn btn-lg btn-danger red-button">
+                <span class="fa fa-ok"></span> Fly right next to you</button>
+              <button class="btn btn-info btn-lg btn-primary blue-button">
+                <span class="fa fa-ok"></span> Fly far away</button>
+              <button class="btn btn-info btn-lg btn-warning yellow-button">
+                <span class="fa fa-ok"></span> Come back</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Controls (Superpower Move Controls) -->
+        <div id="moveControls" class="card">
+          <h4 class="card-header">Move Controls</h4>
+          <div class="card-body">
+            <div class="text-center mb-1">
+              <button class="btn btn-dark btn-lg fa fa-arrow-up up-button">Up</button>
+            </div>
+            <div class="text-center">
+              <button class="btn btn-dark btn-lg fa fa-arrow-left left-button">Left</button>
+              <button class="btn btn-dark btn-lg fa fa-arrow-down down-button">Down</button>
+              <button class="btn btn-dark btn-lg fa fa-arrow-right right-button">Right</button>
+            </div>
+            <br>
+            <div class="text-center">
+              <button class="btn btn-dark btn-lg back-button">
+                <span class="fa fa-comment"></span> Go Planet!</button>
+            <!-- </div> -->
+            <!-- <div class="text-center"> -->
+                <button class="btn btn-dark btn-lg back-button freakout">
+                  <span class="fa fa-comment"></span> Freak Out!</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Card (Captain Planet Hero)-->
+      <div class="col-lg-6">
+
+        <!-- Captain Planet Image -->
+        <img src="assets/captain-planet.jpg" alt="" class="img captain-planet" style="position:absolute; top:50px; left: 80px; z-index: -20; height: 300px">
+      </div>
+    </div>
+  </div>
+
+
+  <script src="jquery-canvas-sparkles.js"></script>
+
+
+  <script>
+
+  // JavaScript function that wraps everything
+  $(document).ready(function() {
+
+    var captainPlanet = $(".captain-planet");
+
+    // Adds sparkle jQuery library to Captain Planet object
+    
+    // captainPlanet.sparkle({
+    //       color: "rainbow",
+    //       count: 300,
+    //       speed: 1,
+    //       minSize: 4,
+    //       maxSize: 7,
+    //       direction: "both"
+    //     });
+
+    // captainPlanet.trigger("start-sparkle");
+
+    // Gets Link for Theme Song
+    var audioElement = document.createElement("audio");
+    audioElement.setAttribute("src", "assets/captainplanet24.mp3");
+
+    // Adds Freak Out Song
+    var freaksong = document.createElement("audio");
+    freaksong.setAttribute("src", "assets/freakout.mp3");
+
+    // Theme Button
+    $(".theme-button").on("click", function() {
+      audioElement.play();
+    });
+    $(".pause-button").on("click", function() {
+      audioElement.pause();
+    });
+
+
+    // Size Buttons
+    $(".normal-button").on("click", function() {
+      captainPlanet.animate({ height: "300px" });
+    });
+    $(".grow-button").on("click", function() {
+      captainPlanet.animate({ height: "500px" });
+    });
+    $(".shrink-button").on("click", function() {
+      captainPlanet.animate({ height: "100px" });
+    });
+
+    // Visibility Buttons
+    $(".vis-button").on("click", function() {
+      captainPlanet.animate({ opacity: "1" });
+    });
+    $(".invis-button").on("click", function() {
+      captainPlanet.animate({ opacity: "0.05" });
+    });
+
+    // Color buttons
+    $(".red-button").on("click", function() {
+      captainPlanet.animate({ height: "10000px" });
+    });
+    $(".blue-button").on("click", function() {
+      captainPlanet.animate({ height: "1px" });
+    });
+    $(".yellow-button").on("click", function() {
+      captainPlanet.animate({ height: "300px" });
+    });
+
+
+    // Move Buttons
+    $(".up-button").on("click", function() {
+      captainPlanet.animate({ top: "-=200px" }, "normal");
+    });
+    $(".down-button").on("click", function() {
+      captainPlanet.animate({ top: "+=200px" }, "normal");
+    });
+    $(".left-button").on("click", function() {
+      captainPlanet.animate({ left: "-=200px" }, "normal");
+    });
+    $(".right-button").on("click", function() {
+      captainPlanet.animate({ left: "+=200px" }, "normal");
+    });
+    $(".back-button").on("click", function() {
+      captainPlanet.animate({ top: "50px", left: "80px" }, "fast");
+    });
+
+    // On Click Event for Freakout button
+    $('.freakout').on('click', function () {
+
+      captainPlanet.sparkle({
+          color: "rainbow",
+          count: 300,
+          speed: 1,
+          minSize: 4,
+          maxSize: 7,
+          direction: "both"
+        });
+
+        captainPlanet.trigger("start.sparkle");
+
+        $('#discovideo').css({ "display": "inline" });
+        captainPlanet.css({ "z-index": "20" });
+        captainPlanet.addClass('hvr-buzz');
+        freaksong.play();
+        captainPlanet.sparkle.start($this);
+
+      }
+    );
+
+    // Keyboard move controls
+    $(document).keyup(function(e) {
+      switch (e.which) {
+
+      // Move Buttons (Keyboard Down)
+      case 40:
+        captainPlanet.animate({ top: "+=200px" }, "normal");
+        break;
+
+        // Move Buttons (Keyboard Right)
+      case 39:
+        captainPlanet.animate({ left: "+=200px" }, "normal");
+        break;
+
+        // Move Buttons (Keyboard Up)
+      case 38:
+        captainPlanet.animate({ top: "-=200px" }, "normal");
+        break;
+
+        // Move Buttons (Keyboard Left)
+      case 37:
+        captainPlanet.animate({ left: "-=200px" }, "normal");
+        break;
+
+      default:
+        break;
+      }
+    });
+  });
+
+  </script>
+
+</body>
+</html>
